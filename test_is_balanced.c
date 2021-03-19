@@ -18,5 +18,10 @@ int main(int argc, char **argv)
   printf("Making system call with \"%s\".\n", arg);
   long res = syscall(SYS_is_balanced, arg);
   printf("System call returned %ld.\n", res);
+  if(res != 0) {
+    printf("1 = Expression IS balanced correctly.\n");
+  } else {
+    printf("0 = Expression is NOT balanced correctly.\n");
+  }
   return res;
 }
