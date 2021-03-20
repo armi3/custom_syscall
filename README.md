@@ -117,7 +117,7 @@ asmlinkage long sys_is_balanced(void);
 Lastly, we add the syscalls themselves somewhere inside the `kernel/sys.c` file and we are ready to compile.
 
 
-```
+```c
 SYSCALL_DEFINE1(ppp, char *, msg) {
   char buf[256];
   long copied = strncpy_from_user(buf, msg, sizeof(buf));
@@ -235,7 +235,7 @@ Testing the custom syscalls is simple. Create a user program in your home or any
 subl test_is_balanced.c
 ``` 
 The program looks like this:
-```
+```c
 /*
  * Test the is_balanced syscall (#441)
  */
@@ -266,13 +266,13 @@ int main(int argc, char **argv)
 ``` 
 Compile it:
 
-```
+```bash
 gcc -o test_is_balanced test_is_balanced.c
 ``` 
 
 Execute it:
 
-```
+```bash
 ./test_is_balanced '((2-2))('
 ./test_is_balanced '((2-2*3))([['
 ./test_is_balanced '[(6*3)-(66/6)]'
